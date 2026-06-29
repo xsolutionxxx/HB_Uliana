@@ -7,12 +7,10 @@
 
   --color-background: #fff6f8;
   --color-primary: #e26d92;
-  --color-text: #6d4b58;
+  --color-title: #6d4b58;
+  --color-text: #8a5f6e;
   --color-cards: #fff;
 
-  --animate-blinking: blinking 2s ease-in-out infinite;
-  --animate-jumping: jumping 1.4s ease-in-out infinite;
-  --animate-blink-jump: blinking 2s ease-in-out infinite, jumping 1.4s ease-in-out infinite;
   --animate-petal: petal-fall linear infinite;
   --animate-wobble: wobble 16s ease-in-out infinite;
   --animate-glow-pulse: glow-pulse 11s ease-in-out infinite;
@@ -25,29 +23,9 @@ body {
   color: var(--color-text);
 }
 
-
-@keyframes jumping {
-
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateY(-6px) scale(1.04);
-  }
-}
-
-@keyframes blinking {
-
-  0%,
-  100% {
-    opacity: 0.8;
-  }
-
-  50% {
-    opacity: 1;
-  }
+.glow-hover:hover {
+  color: #fff;
+  filter: drop-shadow(0 0 6px #e26d92) drop-shadow(0 0 12px #e26d92) drop-shadow(0 0 80px #e26d92);
 }
 
 @keyframes petal-fall {

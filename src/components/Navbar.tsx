@@ -5,31 +5,32 @@ const Navbar = () => {
                 <li>
                     <a
                         href="#"
-                        className="cursor-pointer hover:text-primary transition-colors"
-                    >
-                        Привітання
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#"
-                        className="cursor-pointer hover:text-primary transition-colors"
+                        className="cursor-pointer glow-hover transition-colors"
                     >
                         Спогади
                     </a>
                 </li>
+
                 <li>
                     <a
                         href="#"
-                        className="cursor-pointer hover:text-primary transition-colors"
+                        className="cursor-pointer glow-hover transition-colors"
                     >
-                        Чи добре ти знаєш нас?
+                        Хто ти?
                     </a>
                 </li>
                 <li>
                     <a
                         href="#"
-                        className="cursor-pointer hover:text-primary transition-colors"
+                        className="cursor-pointer glow-hover transition-colors"
+                    >
+                        Вітання
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#"
+                        className="cursor-pointer glow-hover transition-colors"
                     >
                         Люблю тебе &#9829;
                     </a>

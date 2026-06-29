@@ -57,11 +57,11 @@ const Header = () => {
 
             <Navbar />
             <Hero />
-            <div className="absolute bottom-10 flex flex-col items-center gap-5">
+            <div className="absolute bottom-10 flex flex-col items-center gap-5 select-none">
                 <span className="font-medium text-[28px] text-[#C98AA0] tracking-widest">
-                    мершій гортай вниз, бешкетниця
-                </span> 
-                <MoveDown className="text-[#C98AA0] animate-blink-jump" />
+                    гортай вниз, бешкетниця
+                </span>
+                <MoveDown className="text-[#C98AA0] animate-bounce" />
             </div>
         </section>
     );
