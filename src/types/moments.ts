@@ -7,3 +7,4 @@ export type PolaroidItem = {
     stiffness: number;
     stringLen: number;
 };
+

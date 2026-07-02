@@ -20,7 +20,6 @@ function HeartBurst({
     const layerRef = useRef<HTMLDivElement>(null);
     const hearts = useRef<Heart[]>([]);
     const rafRef = useRef<number | null>(null);
-    const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     function spawnHearts(
         ox: number,

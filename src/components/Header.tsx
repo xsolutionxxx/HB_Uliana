@@ -2,7 +2,7 @@ import { MoveDown } from "lucide-react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import useHeroDecor from "../hooks/useHeroDecor";
-import Petals from "./Petals";
+import Petals from "./ui/Petals";
 
 const Header = () => {
     const { layers, orbs } = useHeroDecor();
@@ -57,8 +57,8 @@ const Header = () => {
 
             <Navbar />
             <Hero />
-            <div className="absolute bottom-10 flex flex-col items-center gap-5 select-none">
-                <span className="font-medium text-[28px] text-[#C98AA0] tracking-widest">
+            <div className="absolute bottom-6 sm:bottom-10 flex flex-col items-center gap-3 sm:gap-5 select-none">
+                <span className="font-medium text-[18px] sm:text-[28px] text-[#C98AA0] tracking-widest">
                     гортай вниз, бешкетниця
                 </span>
                 <MoveDown className="text-[#C98AA0] animate-bounce" />

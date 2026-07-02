@@ -1,7 +1,7 @@
 const Navbar = () => {
     return (
-        <nav className="absolute top-14 left-0 w-full flex items-center justify-center py-6">
-            <ul className="text-2xl flex gap-16">
+        <nav className="absolute top-6 sm:top-14 left-0 w-full flex items-center justify-center py-3 sm:py-6 px-4">
+            <ul className="text-sm sm:text-xl md:text-2xl flex gap-4 sm:gap-8 md:gap-16">
                 <li>
                     <a
                         href="#"

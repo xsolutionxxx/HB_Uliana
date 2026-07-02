@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import type { PolaroidItem } from "../types.ts";
+import type { PolaroidItem } from "../../types/moments.ts";
 
 type Props = {
     item: PolaroidItem;

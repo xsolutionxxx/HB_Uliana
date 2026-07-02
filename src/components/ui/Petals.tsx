@@ -1,4 +1,4 @@
-import usePetals from "../hooks/usePetals";
+import usePetals from "../../hooks/usePetals";
 
 export default function Petals() {
     const petals = usePetals();
