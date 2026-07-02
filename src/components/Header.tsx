@@ -4,7 +4,12 @@ import Hero from "./Hero";
 import useHeroDecor from "../hooks/useHeroDecor";
 import Petals from "./ui/Petals";
 
-const Header = () => {
+type Props = {
+    gameWon: boolean;
+    onCongrats: () => void;
+};
+
+const Header = ({ gameWon, onCongrats }: Props) => {
     const { layers, orbs } = useHeroDecor();
 
     return (
@@ -55,7 +60,7 @@ const Header = () => {
                 </div>
             </div>
 
-            <Navbar />
+            <Navbar gameWon={gameWon} onCongrats={onCongrats} />
             <Hero />
             <div className="absolute bottom-6 sm:bottom-10 flex flex-col items-center gap-3 sm:gap-5 select-none">
                 <span className="font-medium text-[18px] sm:text-[28px] text-[#C98AA0] tracking-widest">

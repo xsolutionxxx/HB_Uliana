@@ -7,7 +7,7 @@ const Footer = () => {
     const btnRef = useRef<HTMLButtonElement>(null);
 
     return (
-        <footer className="relative py-16 sm:py-40 flex flex-col items-center select-none px-4">
+        <footer id="footer-section" className="relative py-16 sm:py-40 flex flex-col items-center select-none px-4">
             <HeartBurst sourceRef={btnRef} />
 
             <button

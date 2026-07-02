@@ -17,7 +17,7 @@ const MomentsSection = ({
     photosCount,
 }: Props) => {
     return (
-        <section className="flex flex-col items-center gap-10 sm:gap-20 py-16 sm:py-40 overflow-x-hidden w-full">
+        <section id="moments-section" className="flex flex-col items-center gap-10 sm:gap-20 py-16 sm:py-40 overflow-x-hidden w-full">
             <SectionTitle
                 title="Незабутні спогади"
                 subtitle="Увічнені моменти"

@@ -3,7 +3,7 @@ import { GameStats } from "./GameStats";
 import { GameBoard } from "./GameBoard";
 import { WinOverlay } from "./WinOverlay";
 import { GameOverOverlay } from "./GameOverOverlay";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SectionTitle from "../ui/SectionTitle";
 
 type Props = {
@@ -11,6 +11,7 @@ type Props = {
     photosReady: boolean;
     photosCount: number;
     onAddPhotos: () => void;
+    onWin: () => void;
 };
 
 const GameSection = ({
@@ -18,6 +19,7 @@ const GameSection = ({
     photosReady,
     photosCount,
     onAddPhotos,
+    onWin,
 }: Props) => {
     const [showWin, setShowWin] = useState(false);
 
@@ -33,8 +35,15 @@ const GameSection = ({
         restart,
     } = useGameLogic(photos);
 
+    useEffect(() => {
+        if (status === "won") {
+            setShowWin(true);
+            onWin();
+        }
+    }, [status]);
+
     function handleRestart() {
-        setShowWin(true);
+        setShowWin(false);
         restart();
     }
 
@@ -42,12 +51,6 @@ const GameSection = ({
         <section id="game-section" className="py-10 sm:py-20 px-3 sm:px-6">
             <div className="max-w-190 mx-auto text-center">
                 <div className="flex flex-col items-center gap-8 sm:gap-12">
-                    {/* <ElephantMascot
-                        emotion="broken"
-                        speech="Ой-ой-ой… я впав і все-все забув 😵 Хто ти? Яким кому я мав щось вручити? Допоможи мені згадати — перевертай картки!"
-                        width={300}
-                        animateIn
-                    /> */}
                     <SectionTitle
                         title="Хто ти?"
                         subtitle="Згадай спогад"

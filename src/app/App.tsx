@@ -5,6 +5,7 @@ import MomentsSection from "../components/moments/MomentsSection";
 import GameSection from "../components/game/GameSection";
 import Footer from "../components/Footer";
 import CountdownOverlay from "../components/CountdownOverlay";
+import CongratsModal from "../components/CongratsModal";
 import { usePhotos } from "../hooks/usePhotos";
 
 function App() {
@@ -18,11 +19,13 @@ function App() {
         photosCount,
     } = usePhotos();
 
-    // true = таймер ще йде / false = вміст відкрито
     const [locked, setLocked] = useState(() => {
         const BIRTHDAY = new Date("2026-07-04T00:00:00+03:00");
         return Date.now() < BIRTHDAY.getTime();
     });
+
+    const [gameWon, setGameWon] = useState(false);
+    const [showCongrats, setShowCongrats] = useState(false);
 
     return (
         <>
@@ -30,10 +33,12 @@ function App() {
                 <CountdownOverlay onUnlock={() => setLocked(false)} />
             )}
 
-            {/* Основний контент — прихований поки заблокований */}
             {!locked && (
                 <>
-                    <Header />
+                    <Header
+                        gameWon={gameWon}
+                        onCongrats={() => setShowCongrats(true)}
+                    />
                     <Container>
                         <MomentsSection
                             myPhotos={myPhotos}
@@ -47,9 +52,14 @@ function App() {
                             photosReady={photosReady}
                             photosCount={photosCount}
                             onAddPhotos={addPhotos}
+                            onWin={() => setGameWon(true)}
                         />
                         <Footer />
                     </Container>
+
+                    {showCongrats && (
+                        <CongratsModal onClose={() => setShowCongrats(false)} />
+                    )}
                 </>
             )}
         </>
