@@ -186,6 +186,14 @@ export default function CountdownOverlay({ onUnlock }: Props) {
                     Готуй спогади — скоро ти все побачиш ✨
                 </p>
             )}
+
+            {/* Dev-кнопка — прибрати перед релізом */}
+            <button
+                onClick={handleUnlock}
+                className="absolute top-3 right-3 z-20 text-[10px] text-primary/30 hover:text-primary/70 transition-colors px-2 py-1 rounded border border-primary/10 hover:border-primary/30"
+            >
+                dev →
+            </button>
         </div>
     );
 }
