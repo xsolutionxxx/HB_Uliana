@@ -48,15 +48,13 @@ const GameSection = ({
     }
 
     return (
-        <section id="game-section" className="py-10 sm:py-20 px-3 sm:px-6">
+        <section id="game-section" className="py-20 sm:px-6">
             <div className="max-w-190 mx-auto text-center">
-                <div className="flex flex-col items-center gap-8 sm:gap-12">
-                    <SectionTitle
-                        title="Хто ти?"
-                        subtitle="Згадай спогад"
-                        description="Від сильного падіння у слоніка перемішалися всі спогади. Допоможи їх відновити — перевертай картки й знаходь однакові пари. Але будь обережна: не більше 30 ходів і 2 хвилини, інакше він так і не пригадає!"
-                    />
-                </div>
+                <SectionTitle
+                    title="Хто ти?"
+                    subtitle="Згадай спогад"
+                    description="Від сильного падіння у слоніка перемішалися всі спогади. Допоможи їх відновити — перевертай картки й знаходь однакові пари. Але будь обережна: не більше 30 ходів і 2 хвилини, інакше він так і не пригадає!"
+                />
 
                 <GameStats
                     moves={moves}

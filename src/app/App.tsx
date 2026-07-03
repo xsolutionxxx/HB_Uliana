@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import CountdownOverlay from "../components/CountdownOverlay";
 import CongratsModal from "../components/CongratsModal";
 import { usePhotos } from "../hooks/usePhotos";
+import PromoIntro from "../components/PromoIntro";
 
 function App() {
     const {
@@ -21,12 +22,13 @@ function App() {
     } = usePhotos();
 
     const [locked, setLocked] = useState(() => {
-        const BIRTHDAY = new Date("2026-07-04T00:00:00+03:00");
+        const BIRTHDAY = new Date("2026-07-04T03:00:00+03:00");
         return Date.now() < BIRTHDAY.getTime();
     });
 
     const [gameWon, setGameWon] = useState(false);
     const [showCongrats, setShowCongrats] = useState(false);
+    const [elephantOnBaobab, setElephantOnBaobab] = useState(false);
 
     return (
         <>
@@ -42,6 +44,7 @@ function App() {
                         gameWon={gameWon}
                         onCongrats={() => setShowCongrats(true)}
                     />
+                    <PromoIntro onElephantLand={() => setElephantOnBaobab(true)} />
                     <div className="lg:max-w-360 lg:mx-auto lg:px-20">
                         <MomentsSection
                             myPhotos={myPhotos}
@@ -49,6 +52,7 @@ function App() {
                             onAddPhotos={addPhotos}
                             onRemovePhoto={removePhoto}
                             photosCount={photosCount}
+                            elephantOnBaobab={elephantOnBaobab}
                         />
                     </div>
                     <Container>
@@ -60,6 +64,12 @@ function App() {
                             onWin={() => setGameWon(true)}
                         />
                     </Container>
+                    <img
+                        src="/cardio_heart.png"
+                        alt=""
+                        className="relative w-full pointer-events-none select-none z-10 -mb-[6vw] -mt-[14vw] opacity-95"
+                        style={{ filter: "sepia(1) hue-rotate(310deg) saturate(2.8) brightness(1.05) contrast(1.1)" }}
+                    />
                     <Footer />
 
                     {showCongrats && (

@@ -7,6 +7,7 @@ type Props = {
     onAddPhotos: () => void;
     onRemovePhoto: (index: number) => void;
     photosCount: number;
+    elephantOnBaobab?: boolean;
 };
 
 const MomentsSection = ({
@@ -15,6 +16,7 @@ const MomentsSection = ({
     onAddPhotos,
     onRemovePhoto,
     photosCount,
+    elephantOnBaobab = false,
 }: Props) => {
     return (
         <section
@@ -30,7 +32,6 @@ const MomentsSection = ({
                 />
             </div>
 
-            {/* SVG-фільтр: зелень → рожевий, коричневий ствол залишається */}
             <svg width="0" height="0" style={{ position: "absolute" }}>
                 <defs>
                     <filter id="baobab-pink" colorInterpolationFilters="sRGB">
@@ -50,12 +51,39 @@ const MomentsSection = ({
                 className="absolute bottom-0 left-0 -translate-x-1/2 h-full sm:h-[110%] z-10 pointer-events-none select-none"
                 style={{ filter: "url(#baobab-pink)" }}
             />
-            <img
-                src="/baobab.png"
-                alt="baobab"
-                className="absolute bottom-0 right-0 translate-x-1/2 h-[96%] sm:h-[105%] z-10 pointer-events-none select-none scale-x-[-1]"
-                style={{ filter: "url(#baobab-pink)" }}
-            />
+            <div
+                data-baobab="right"
+                className="absolute bottom-0 right-0 translate-x-1/2 h-[96%] sm:h-[105%] z-10 pointer-events-none select-none"
+            >
+                <img
+                    src="/baobab.png"
+                    alt="baobab"
+                    className="w-full h-full scale-x-[-1]"
+                    style={{ filter: "url(#baobab-pink)" }}
+                />
+                {elephantOnBaobab && (
+                    <img
+                        src="/happy-elephant.png"
+                        alt=""
+                        draggable={false}
+                        className="absolute pointer-events-none select-none"
+                        style={{
+                            width: "clamp(60px, 10vw, 110px)",
+                            left: "8%",
+                            top: "34%",
+                            transform: "scaleX(-1)",
+                            mixBlendMode: "multiply",
+                            animation: "elephant-pop 0.4s cubic-bezier(.34,1.56,.64,1) both",
+                        }}
+                    />
+                )}
+            </div>
+            <style>{`
+                @keyframes elephant-pop {
+                    from { transform: scaleX(-1) scale(0) rotate(-30deg); opacity: 0; }
+                    to   { transform: scaleX(-1) scale(1) rotate(0deg);   opacity: 1; }
+                }
+            `}</style>
 
             <Clothesline
                 myPhotos={myPhotos}

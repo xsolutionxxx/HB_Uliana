@@ -15,7 +15,7 @@ export function StartOverlay({
 }: Props) {
     return (
         <div className="absolute inset-0 z-10 flex items-center justify-center">
-            <div className="py-9 px-14 flex flex-col items-center gap-4 bg-white rounded-2xl text-center s">
+            <div className="py-9 px-6 md:px-14 flex flex-col items-center gap-4 bg-white rounded-2xl text-center s">
                 {photosReady ? (
                     <>
                         <span className="text-5xl animate-bounce">🎴</span>

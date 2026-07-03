@@ -179,7 +179,9 @@ export function Clothesline({ myPhotos, herSlots, onRemoveHer }: Props) {
             const arcY = (sx: number) => {
                 const t = Math.max(0, Math.min(1, vw > 0 ? sx / vw : 0));
                 // matches SVG rope: M 0,55 Q 500,160 1000,55
-                return (1 - t) * (1 - t) * 55 + 2 * (1 - t) * t * 160 + t * t * 55;
+                return (
+                    (1 - t) * (1 - t) * 55 + 2 * (1 - t) * t * 160 + t * t * 55
+                );
             };
 
             cardRefs.current.forEach((card, i) => {
@@ -222,7 +224,7 @@ export function Clothesline({ myPhotos, herSlots, onRemoveHer }: Props) {
             id="clothesline"
             style={{
                 position: "relative",
-                height: "340px",
+                height: "clamp(360px, 50vh, 400px)",
                 width: "100%",
                 overflow: "hidden",
                 cursor: "grab",

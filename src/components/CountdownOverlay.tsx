@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import Petals from "./ui/Petals";
 import useHeroDecor from "../hooks/useHeroDecor";
 
-const BIRTHDAY = new Date("2026-07-04T00:00:00+03:00");
+const BIRTHDAY = new Date("2026-07-04T03:00:00+03:00");
 
 type TimeLeft = {
     days: number;
@@ -187,13 +187,6 @@ export default function CountdownOverlay({ onUnlock }: Props) {
                 </p>
             )}
 
-            {/* Dev-кнопка — прибрати перед релізом */}
-            <button
-                onClick={handleUnlock}
-                className="absolute top-3 right-3 z-20 text-[10px] text-primary/30 hover:text-primary/70 transition-colors px-2 py-1 rounded border border-primary/10 hover:border-primary/30"
-            >
-                dev →
-            </button>
         </div>
     );
 }

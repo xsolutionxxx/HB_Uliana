@@ -5,6 +5,7 @@ import brokenImg from "../assets/broken-elephant.png";
 import inairImg from "../assets/inair-elephant.png";
 import upHeartImg from "../assets/up-heart-elephant.png";
 import downHeartImg from "../assets/down-heart-elephant.png";
+import somersaultImg from "../assets/somersault-elephant.png";
 
 const IMGS = {
     default: defaultImg,
@@ -14,6 +15,7 @@ const IMGS = {
     inair: inairImg,
     "up-heart": upHeartImg,
     "down-heart": downHeartImg,
+    somersault: somersaultImg,
 } as const;
 
 export type ElephantEmotion = keyof typeof IMGS;

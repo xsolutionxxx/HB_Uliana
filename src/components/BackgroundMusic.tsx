@@ -54,6 +54,7 @@ export default function BackgroundMusic() {
     const [duration, setDuration] = useState(0);
     const [expanded, setExpanded] = useState(false);
     const panelRef = useRef<HTMLDivElement>(null);
+    const desktopPanelRef = useRef<HTMLDivElement>(null);
     const trackIdx = 0;
     const track = PLAYLIST[trackIdx];
 
@@ -83,9 +84,9 @@ export default function BackgroundMusic() {
     useEffect(() => {
         if (!expanded) return;
         const handler = (e: MouseEvent) => {
-            if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-                setExpanded(false);
-            }
+            const inMobile = panelRef.current?.contains(e.target as Node);
+            const inDesktop = desktopPanelRef.current?.contains(e.target as Node);
+            if (!inMobile && !inDesktop) setExpanded(false);
         };
         document.addEventListener("mousedown", handler);
         return () => document.removeEventListener("mousedown", handler);
@@ -176,7 +177,7 @@ export default function BackgroundMusic() {
             </div>
 
             {/* ── Десктоп плеєр (sm+) ── */}
-            <div className="hidden sm:flex fixed top-4 right-4 z-50 items-center gap-2">
+            <div ref={desktopPanelRef} className="hidden sm:flex fixed top-4 right-4 z-50 items-center gap-2">
                 <div className={`flex items-center gap-2 bg-white/90 backdrop-blur-md
                                 rounded-2xl px-3 py-2 shadow-lg border border-primary/20
                                 transition-all duration-300 overflow-hidden
