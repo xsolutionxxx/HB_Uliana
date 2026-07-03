@@ -20,6 +20,7 @@ const MomentsSection = ({
         <section
             id="moments-section"
             className="relative flex flex-col items-center sm:gap-10 py-16 sm:py-40 w-full"
+            style={{ minHeight: "clamp(700px, 130vw, 1000px)" }}
         >
             <div className="pt-70 lg:pt-30 w-90 md:w-110 lg:w-150">
                 <SectionTitle
@@ -40,52 +41,49 @@ const MomentsSection = ({
                 className="absolute bottom-0 right-0 translate-x-1/2 h-[96%] sm:h-[105%] z-10 pointer-events-none select-none scale-x-[-1]"
             />
 
-            {/* Контейнер фіксованої висоти — слайдер + поляроїд */}
-            <div className="relative w-full" style={{ height: "clamp(380px, 55vw, 480px)" }}>
-                <Clothesline
-                    myPhotos={myPhotos}
-                    herSlots={herSlots}
-                    onRemoveHer={onRemovePhoto}
-                />
+            <Clothesline
+                myPhotos={myPhotos}
+                herSlots={herSlots}
+                onRemoveHer={onRemovePhoto}
+            />
 
-                {/* Поляроїд — абсолютний внизу контейнера, не виходить за секцію */}
+            {/* Поляроїд — під слайдером */}
+            <div
+                className="relative z-20 bg-white flex flex-col w-60 sm:w-72"
+                style={{
+                    boxShadow: "0 12px 40px rgba(180,90,130,0.22), 0 3px 10px rgba(0,0,0,0.1)",
+                    padding: "10px 10px 0 10px",
+                    borderRadius: "2px",
+                    transform: "rotate(-1.5deg)",
+                }}
+            >
                 <div
-                    className="absolute bottom-6 left-1/2 z-20 bg-white flex flex-col w-60 sm:w-72"
+                    className="w-full flex flex-col items-center justify-center gap-2 py-6"
                     style={{
-                        boxShadow: "0 12px 40px rgba(180,90,130,0.22), 0 3px 10px rgba(0,0,0,0.1)",
-                        padding: "10px 10px 0 10px",
-                        borderRadius: "2px",
-                        transform: "translateX(-50%) rotate(-1.5deg)",
+                        background: "linear-gradient(135deg, #ffe0ec 0%, #ffd6e8 40%, #fce4f0 100%)",
+                        minHeight: "160px",
                     }}
                 >
-                    <div
-                        className="w-full flex flex-col items-center justify-center gap-2 py-6"
-                        style={{
-                            background: "linear-gradient(135deg, #ffe0ec 0%, #ffd6e8 40%, #fce4f0 100%)",
-                            minHeight: "160px",
-                        }}
-                    >
-                        <span className="text-4xl">
-                            {photosCount < 6 ? "📎" : "🌸"}
-                        </span>
-                        <span className="font-caveat font-bold text-xl text-primary text-center leading-tight px-4">
-                            {photosCount < 6 ? "Додай свій спогад" : "Всі спогади додано!"}
-                        </span>
-                        {photosCount < 6 && (
-                            <button
-                                onClick={onAddPhotos}
-                                className="bg-primary text-white font-bold px-5 py-2 rounded-full
-                                           shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-transform text-sm"
-                            >
-                                ＋ Додати спогад
-                            </button>
-                        )}
-                    </div>
-                    <div className="flex items-center justify-center py-3">
-                        <span className="font-caveat text-lg text-primary/60">
-                            {photosCount} / 6
-                        </span>
-                    </div>
+                    <span className="text-4xl">
+                        {photosCount < 6 ? "📎" : "🌸"}
+                    </span>
+                    <span className="font-caveat font-bold text-xl text-primary text-center leading-tight px-4">
+                        {photosCount < 6 ? "Додай свій спогад" : "Всі спогади додано!"}
+                    </span>
+                    {photosCount < 6 && (
+                        <button
+                            onClick={onAddPhotos}
+                            className="bg-primary text-white font-bold px-5 py-2 rounded-full
+                                       shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-transform text-sm"
+                        >
+                            ＋ Додати спогад
+                        </button>
+                    )}
+                </div>
+                <div className="flex items-center justify-center py-3">
+                    <span className="font-caveat text-lg text-primary/60">
+                        {photosCount} / 6
+                    </span>
                 </div>
             </div>
         </section>
