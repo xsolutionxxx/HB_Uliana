@@ -60,14 +60,12 @@ function App() {
                             onWin={() => setGameWon(true)}
                         />
                     </Container>
-                    <div className="flex justify-center py-4 sm:py-8">
-                        <img
-                            src="/cardio_heart.png"
-                            alt=""
-                            className="w-[clamp(180px,50vw,420px)] pointer-events-none select-none"
-                            style={{ mixBlendMode: "multiply" }}
-                        />
-                    </div>
+                    <img
+                        src="/cardio_heart.png"
+                        alt=""
+                        className="relative w-full pointer-events-none select-none z-10 -mb-[8vw] -mt-[8vw]"
+                        style={{ mixBlendMode: "multiply" }}
+                    />
                     <Footer />
 
                     {showCongrats && (
