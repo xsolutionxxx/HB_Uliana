@@ -19,7 +19,7 @@ const MomentsSection = ({
     return (
         <section
             id="moments-section"
-            className="relative flex flex-col items-center gap-2 sm:gap-10 py-16 sm:py-40 w-full"
+            className="relative flex flex-col items-center sm:gap-10 py-16 sm:py-40 w-full"
         >
             <div className="pt-70 lg:pt-30 w-90 md:w-110 lg:w-150">
                 <SectionTitle
@@ -37,7 +37,7 @@ const MomentsSection = ({
             <img
                 src="/baobab.png"
                 alt="baobab"
-                className="absolute bottom-0 right-0 translate-x-1/2 h-full sm:h-[110%] z-10 pointer-events-none select-none scale-x-[-1]"
+                className="absolute bottom-0 right-0 translate-x-1/2 h-[96%] sm:h-[105%] z-10 pointer-events-none select-none scale-x-[-1]"
             />
 
             <Clothesline
@@ -46,9 +46,8 @@ const MomentsSection = ({
                 onRemoveHer={onRemovePhoto}
             />
 
-            {/* Поляроїд */}
             <div
-                className="relative z-20 bg-white flex flex-col w-64 sm:w-72"
+                className="relative z-20 bg-white flex flex-col w-64 sm:w-72 mt-4 sm:mt-0"
                 style={{
                     boxShadow: "0 12px 40px rgba(180,90,130,0.22), 0 3px 10px rgba(0,0,0,0.1)",
                     padding: "10px 10px 0 10px",
@@ -56,11 +55,11 @@ const MomentsSection = ({
                     transform: "rotate(-1.5deg)",
                 }}
             >
-                {/* Фото-зона */}
                 <div
                     className="w-full flex flex-col items-center justify-center gap-3 py-8"
                     style={{
-                        background: "linear-gradient(135deg, #ffe0ec 0%, #ffd6e8 40%, #fce4f0 100%)",
+                        background:
+                            "linear-gradient(135deg, #ffe0ec 0%, #ffd6e8 40%, #fce4f0 100%)",
                         minHeight: "180px",
                     }}
                 >
@@ -68,7 +67,9 @@ const MomentsSection = ({
                         {photosCount < 6 ? "📎" : "🌸"}
                     </span>
                     <span className="font-caveat font-bold text-2xl text-primary text-center leading-tight px-4">
-                        {photosCount < 6 ? "Додай свій спогад" : "Всі спогади\nдодано!"}
+                        {photosCount < 6
+                            ? "Додай свій спогад"
+                            : "Всі спогади\nдодано!"}
                     </span>
 
                     {photosCount < 6 && (
@@ -82,7 +83,6 @@ const MomentsSection = ({
                     )}
                 </div>
 
-                {/* Білий підпис поляроїда */}
                 <div className="flex items-center justify-center py-4">
                     <span className="font-caveat text-xl text-primary/60 tracking-wide">
                         {photosCount} / 6
