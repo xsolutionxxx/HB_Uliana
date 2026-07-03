@@ -22,7 +22,7 @@ const MomentsSection = ({
             className="relative flex flex-col items-center sm:gap-10 py-16 sm:py-40 w-full"
             style={{ minHeight: "clamp(700px, 130vw, 1000px)" }}
         >
-            <div className="pt-70 lg:pt-30 w-90 md:w-110 lg:w-150">
+            <div className="pt-70 lg:pt-30 w-full max-w-[90vw] md:w-110 lg:w-150 px-4">
                 <SectionTitle
                     title="Незабутні спогади"
                     subtitle="Увічнені моменти"
@@ -47,7 +47,6 @@ const MomentsSection = ({
                 onRemoveHer={onRemovePhoto}
             />
 
-            {/* Поляроїд — під слайдером */}
             <div
                 className="relative z-20 bg-white flex flex-col w-60 sm:w-72"
                 style={{

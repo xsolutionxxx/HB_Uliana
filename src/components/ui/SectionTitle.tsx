@@ -11,7 +11,7 @@ function SectionTitle({ title, subtitle, description }: SectionTitleProps) {
                 {title}
             </h3>
             {subtitle && (
-                <h2 className="mt-2 sm:mt-2.5 font-playfair text-[clamp(28px,7vw,52px)] text-title leading-tight">
+                <h2 className="mt-2 sm:mt-2.5 font-playfair text-[clamp(22px,6vw,52px)] text-title leading-tight whitespace-nowrap">
                     {subtitle}
                 </h2>
             )}
