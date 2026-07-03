@@ -124,13 +124,91 @@ export default function BackgroundMusic() {
                 style={{ display: "none" }}
             />
 
+            {/* Мобільний плеєр — повна ширина зверху */}
+            {expanded && (
+                <div
+                    ref={panelRef}
+                    className="fixed top-0 left-0 right-0 z-50 sm:hidden
+                               flex items-center gap-3 px-4 py-3
+                               bg-white/95 backdrop-blur-md shadow-lg border-b border-primary/20"
+                >
+                    {/* Пластинка */}
+                    <button
+                        onClick={() => setExpanded(false)}
+                        className="cursor-pointer active:scale-90 transition-transform shrink-0"
+                    >
+                        <VinylDisc spinning={playing} />
+                    </button>
+
+                    {/* Контент */}
+                    <div className="flex flex-col gap-1.5 flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2">
+                            <span className="text-[11px] font-semibold text-primary truncate">
+                                {track.name}
+                            </span>
+                            <button
+                                onClick={togglePlay}
+                                className="text-primary cursor-pointer shrink-0"
+                            >
+                                {playing ? <Pause size={16} /> : <Play size={16} />}
+                            </button>
+                        </div>
+
+                        {/* Прогрес */}
+                        <div className="flex items-center gap-2">
+                            <span className="text-[9px] text-primary/50 tabular-nums w-7 shrink-0">
+                                {formatTime(currentTime)}
+                            </span>
+                            <input
+                                type="range"
+                                min={0}
+                                max={duration || 1}
+                                step={0.1}
+                                value={currentTime}
+                                onChange={handleSeek}
+                                className="flex-1 accent-primary cursor-pointer"
+                                style={{ height: "3px" }}
+                            />
+                            <span className="text-[9px] text-primary/50 tabular-nums w-7 shrink-0 text-right">
+                                {formatTime(duration)}
+                            </span>
+                        </div>
+
+                        {/* Гучність */}
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => setMuted((m) => !m)}
+                                className="text-primary/60 cursor-pointer shrink-0"
+                            >
+                                {muted || volume === 0 ? <VolumeX size={13} /> : <Volume2 size={13} />}
+                            </button>
+                            <input
+                                type="range"
+                                min={0}
+                                max={1}
+                                step={0.01}
+                                value={muted ? 0 : volume}
+                                onChange={(e) => {
+                                    const v = parseFloat(e.target.value);
+                                    setVolume(v);
+                                    if (v > 0) setMuted(false);
+                                }}
+                                className="flex-1 accent-primary cursor-pointer"
+                                style={{ height: "3px" }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Десктоп плеєр + кнопка пластинки */}
             <div
                 ref={panelRef}
                 className="fixed top-4 right-4 z-50 flex items-center gap-2"
             >
-                {/* Панель керування */}
+                {/* Панель (тільки на sm+) */}
                 <div
-                    className={`flex items-center gap-2 bg-white/90 backdrop-blur-md
+                    className={`hidden sm:flex items-center gap-2 bg-white/90 backdrop-blur-md
                                 rounded-2xl px-3 py-2 shadow-lg border border-primary/20
                                 transition-all duration-300 overflow-hidden
                                 ${expanded
@@ -138,7 +216,6 @@ export default function BackgroundMusic() {
                                     : "opacity-0 max-w-0 px-0 pointer-events-none"
                                 }`}
                 >
-                    {/* Play/Pause */}
                     <button
                         onClick={togglePlay}
                         className="text-primary/80 hover:text-primary cursor-pointer shrink-0 transition-colors"
@@ -146,9 +223,8 @@ export default function BackgroundMusic() {
                         {playing ? <Pause size={15} /> : <Play size={15} />}
                     </button>
 
-                    {/* Назва + прогрес */}
                     <div className="flex flex-col gap-0.5 min-w-0">
-                        <span className="text-[10px] font-semibold text-primary truncate max-w-[120px] sm:max-w-[150px]">
+                        <span className="text-[10px] font-semibold text-primary truncate max-w-[150px]">
                             {track.name}
                         </span>
                         <div className="flex items-center gap-1">
@@ -162,7 +238,7 @@ export default function BackgroundMusic() {
                                 step={0.1}
                                 value={currentTime}
                                 onChange={handleSeek}
-                                className="w-20 sm:w-28 accent-primary cursor-pointer"
+                                className="w-28 accent-primary cursor-pointer"
                                 style={{ height: "3px" }}
                             />
                             <span className="text-[9px] text-primary/50 shrink-0 tabular-nums w-7">
@@ -171,7 +247,6 @@ export default function BackgroundMusic() {
                         </div>
                     </div>
 
-                    {/* Гучність */}
                     <button
                         onClick={() => setMuted((m) => !m)}
                         className="text-primary/60 hover:text-primary cursor-pointer shrink-0 transition-colors"
@@ -194,7 +269,7 @@ export default function BackgroundMusic() {
                     />
                 </div>
 
-                {/* Вінілова пластинка — клік відкриває/закриває */}
+                {/* Вінілова пластинка */}
                 <button
                     onClick={() => setExpanded((s) => !s)}
                     title={expanded ? "Сховати плеєр" : "Відкрити плеєр"}
