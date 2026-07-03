@@ -1,5 +1,37 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Play, Pause, Volume2, VolumeX, Music } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+
+function VinylDisc({ spinning }: { spinning: boolean }) {
+    return (
+        <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            style={{
+                animation: spinning ? "vinyl-spin 2.4s linear infinite" : "none",
+                filter: "drop-shadow(0 2px 6px rgba(180,90,130,0.35))",
+            }}
+        >
+            <style>{`
+                @keyframes vinyl-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            `}</style>
+            {/* Outer disc */}
+            <circle cx="20" cy="20" r="19" fill="#e8749a" />
+            {/* Groove rings */}
+            <circle cx="20" cy="20" r="16" fill="none" stroke="#c95882" strokeWidth="0.7" opacity="0.6" />
+            <circle cx="20" cy="20" r="13" fill="none" stroke="#c95882" strokeWidth="0.7" opacity="0.6" />
+            <circle cx="20" cy="20" r="10" fill="none" stroke="#c95882" strokeWidth="0.7" opacity="0.6" />
+            <circle cx="20" cy="20" r="7"  fill="none" stroke="#c95882" strokeWidth="0.7" opacity="0.6" />
+            {/* Label area */}
+            <circle cx="20" cy="20" r="5.5" fill="#fff0f5" />
+            <circle cx="20" cy="20" r="5.5" fill="none" stroke="#f0b0c8" strokeWidth="0.5" />
+            {/* Center hole */}
+            <circle cx="20" cy="20" r="1.4" fill="#c95882" />
+            {/* Shine */}
+            <ellipse cx="13" cy="13" rx="3.5" ry="2" fill="white" opacity="0.15" transform="rotate(-30 13 13)" />
+        </svg>
+    );
+}
 
 const PLAYLIST = [
     { src: "/djo-end-of-beginning.mp3", name: "Djo — End Of Beginning" },
@@ -162,16 +194,13 @@ export default function BackgroundMusic() {
                     />
                 </div>
 
-                {/* Головна кнопка — клік відкриває/закриває */}
+                {/* Вінілова пластинка — клік відкриває/закриває */}
                 <button
                     onClick={() => setExpanded((s) => !s)}
                     title={expanded ? "Сховати плеєр" : "Відкрити плеєр"}
-                    className="flex items-center justify-center w-10 h-10 rounded-full
-                               bg-white/85 backdrop-blur-sm shadow-md border border-primary/20
-                               text-primary/70 hover:text-primary hover:bg-white
-                               cursor-pointer transition-all active:scale-90 shrink-0"
+                    className="cursor-pointer active:scale-90 transition-transform shrink-0"
                 >
-                    {playing ? <Pause size={16} /> : <Music size={16} />}
+                    <VinylDisc spinning={playing} />
                 </button>
             </div>
         </>
