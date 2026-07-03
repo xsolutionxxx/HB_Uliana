@@ -25,8 +25,20 @@ const Footer = () => {
     return (
         <footer
             id="footer-section"
-            className="relative py-30 sm:py-40 flex flex-col items-center select-none px-4"
+            className="relative py-30 sm:py-40 flex flex-col items-center select-none px-4 overflow-hidden"
+            style={{
+                background: "radial-gradient(ellipse 120% 80% at 50% 100%, #ffd6e8 0%, #ffe8f2 40%, #fff6f8 100%)",
+            }}
         >
+            {/* Декоративні кола на фоні */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full opacity-30"
+                    style={{ background: "radial-gradient(circle, #f9a8c9, transparent 70%)" }} />
+                <div className="absolute -bottom-10 -right-16 w-96 h-96 rounded-full opacity-20"
+                    style={{ background: "radial-gradient(circle, #e26d92, transparent 70%)" }} />
+                <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full opacity-10"
+                    style={{ background: "radial-gradient(circle, #e26d92, transparent 70%)" }} />
+            </div>
             <HeartBurst sourceRef={btnRef} />
 
             <button
@@ -34,7 +46,7 @@ const Footer = () => {
                 onClick={handleClick}
                 className="relative flex flex-col items-center cursor-pointer active:scale-95 transition-transform"
             >
-                <div className="absolute -top-12 sm:-top-16 -right-8 sm:-right-12 -rotate-18 sm:-rotate-10">
+                <div className="absolute -top-22 sm:-top-16 -right-11 sm:-right-12 -rotate-23 sm:-rotate-10">
                     <div className="relative">
                         <img
                             src="/arrow-heart.png"
@@ -67,10 +79,17 @@ const Footer = () => {
                 З ювілеєм, сонечко! До нових спільних спогадів!
             </h4>
 
-            <span className="absolute bottom-6 sm:bottom-8 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-xl text-center px-4">
+            <span className="absolute bottom-6 sm:bottom-8 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-xl text-center px-4">
                 Нажмякалась? Мершій відкривай свій подаруночок
-                <ArrowRight strokeWidth={1.5} size={18} />
-                <Gift strokeWidth={1.5} size={18} />
+                <ArrowRight
+                    strokeWidth={1.5}
+                    className="text-primary w-3.5 h-3.5 sm:w-4.5 sm:h-4.5"
+                />
+                <Gift
+                    strokeWidth={1.5}
+                    size={18}
+                    className="text-primary w-3.5 h-3.5 sm:w-4.5 sm:h-4.5"
+                />
             </span>
         </footer>
     );
