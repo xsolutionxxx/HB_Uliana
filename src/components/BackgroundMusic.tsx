@@ -128,7 +128,7 @@ export default function BackgroundMusic() {
             <div className="sm:hidden">
                 {expanded ? (
                     /* Розгорнута панель — повна ширина */
-                    <div className="fixed top-0 left-0 right-0 z-50
+                    <div ref={panelRef} className="fixed top-0 left-0 right-0 z-50
                                     flex items-center gap-3 px-4 py-3
                                     bg-white/95 backdrop-blur-md shadow-lg border-b border-primary/20">
                         {/* Пластинка — тап закриває */}
@@ -176,7 +176,7 @@ export default function BackgroundMusic() {
             </div>
 
             {/* ── Десктоп плеєр (sm+) ── */}
-            <div ref={panelRef} className="hidden sm:flex fixed top-4 right-4 z-50 items-center gap-2">
+            <div className="hidden sm:flex fixed top-4 right-4 z-50 items-center gap-2">
                 <div className={`flex items-center gap-2 bg-white/90 backdrop-blur-md
                                 rounded-2xl px-3 py-2 shadow-lg border border-primary/20
                                 transition-all duration-300 overflow-hidden
