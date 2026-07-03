@@ -17,13 +17,21 @@ const MomentsSection = ({
     photosCount,
 }: Props) => {
     return (
-        <section id="moments-section" className="flex flex-col items-center gap-10 sm:gap-20 py-16 sm:py-40 overflow-x-hidden w-full">
+        <section
+            id="moments-section"
+            className="relative flex flex-col items-center gap-10 sm:gap-20 py-16 sm:py-40 w-full"
+        >
             <SectionTitle
                 title="Незабутні спогади"
                 subtitle="Увічнені моменти"
                 description="Я обрав 6 найяскравіших моментів нашого життя. Твоїм завданням буде додати ще 6 наших спільних спогадів."
             />
 
+            <img
+                src="/baobab.png"
+                alt="baobab"
+                className="absolute bottom-0 left-0 -translate-x-1/2 h-full z-1000"
+            />
             <Clothesline
                 myPhotos={myPhotos}
                 herSlots={herSlots}

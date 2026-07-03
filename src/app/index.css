@@ -26,6 +26,7 @@ body {
   font-family: var(--font-nunito);
   background-color: var(--color-background);
   color: var(--color-text);
+  overflow-x: hidden;
 }
 
 .glow-hover:hover {
