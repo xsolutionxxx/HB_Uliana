@@ -4,44 +4,8 @@ import HeartBurst from "./ui/HeartBurst";
 import { ElephantMascot } from "./ElephantMascot";
 
 function playElephantTrumpet() {
-    const ctx = new AudioContext();
-
-    // Основний тон — спадаючий зі sweep
-    const osc1 = ctx.createOscillator();
-    const osc2 = ctx.createOscillator();
-    const gain = ctx.createGain();
-    const distortion = ctx.createWaveShaper();
-
-    // Crunch curve для "brass" звуку
-    const curve = new Float32Array(256);
-    for (let i = 0; i < 256; i++) {
-        const x = (i * 2) / 256 - 1;
-        curve[i] = (Math.PI + 200) * x / (Math.PI + 200 * Math.abs(x));
-    }
-    distortion.curve = curve;
-
-    osc1.type = "sawtooth";
-    osc1.frequency.setValueAtTime(520, ctx.currentTime);
-    osc1.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.9);
-
-    osc2.type = "sawtooth";
-    osc2.frequency.setValueAtTime(780, ctx.currentTime);
-    osc2.frequency.exponentialRampToValueAtTime(270, ctx.currentTime + 0.9);
-
-    gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.35, ctx.currentTime + 0.06);
-    gain.gain.setValueAtTime(0.35, ctx.currentTime + 0.5);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.1);
-
-    osc1.connect(distortion);
-    osc2.connect(distortion);
-    distortion.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc1.start(ctx.currentTime);
-    osc2.start(ctx.currentTime);
-    osc1.stop(ctx.currentTime + 1.1);
-    osc2.stop(ctx.currentTime + 1.1);
+    const audio = new Audio("/elephant.mp3");
+    audio.play().catch(() => {});
 }
 
 const Footer = () => {
