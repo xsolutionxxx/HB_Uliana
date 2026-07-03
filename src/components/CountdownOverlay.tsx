@@ -54,7 +54,7 @@ export default function CountdownOverlay({ onUnlock }: Props) {
 
     return (
         <div
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none"
+            className="fixed inset-0 z-100 flex flex-col items-center justify-center overflow-hidden select-none"
             style={{
                 background:
                     "radial-gradient(120% 90% at 50% 0%, #ffe6ee, #fff2f6 42%, #fff6f8)",
@@ -113,7 +113,7 @@ export default function CountdownOverlay({ onUnlock }: Props) {
                 </span>
 
                 <p className="font-bold text-xs sm:text-sm tracking-[0.28em] uppercase text-primary">
-                    {celebrating ? "З Днем Народження" : "Ще трішечки"}
+                    {celebrating ? "З днем народження" : "Ще трішечки"}
                 </p>
 
                 <h1 className="font-caveat font-black text-[clamp(60px,18vw,160px)] text-primary leading-none">
@@ -174,7 +174,7 @@ export default function CountdownOverlay({ onUnlock }: Props) {
                         )}
 
                         <p className="text-sm sm:text-base text-text mt-1">
-                            Цей подарунок відкриється у твій ювілей 💝
+                            Цей подарунок відкриється у твій ювілей
                         </p>
                     </>
                 )}
@@ -190,7 +190,7 @@ export default function CountdownOverlay({ onUnlock }: Props) {
             {/* Dev-кнопка — прибрати перед релізом */}
             <button
                 onClick={handleUnlock}
-                className="hidden absolute top-3 right-3 z-20 text-[10px] text-primary/30 hover:text-primary/70 transition-colors px-2 py-1 rounded border border-primary/10 hover:border-primary/30"
+                className="absolute top-3 right-3 z-20 text-[10px] text-primary/30 hover:text-primary/70 transition-colors px-2 py-1 rounded border border-primary/10 hover:border-primary/30"
             >
                 dev →
             </button>
