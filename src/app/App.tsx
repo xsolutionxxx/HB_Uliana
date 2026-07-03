@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "../components/Header";
+import BackgroundMusic from "../components/BackgroundMusic";
 import Container from "../components/ui/Container";
 import MomentsSection from "../components/moments/MomentsSection";
 import GameSection from "../components/game/GameSection";
@@ -29,6 +30,8 @@ function App() {
 
     return (
         <>
+            <BackgroundMusic />
+
             {locked && (
                 <CountdownOverlay onUnlock={() => setLocked(false)} />
             )}
