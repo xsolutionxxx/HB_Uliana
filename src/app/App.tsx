@@ -60,13 +60,7 @@ function App() {
                             onWin={() => setGameWon(true)}
                         />
                     </Container>
-                    <img
-                        src="/hearts-stream.png"
-                        alt=""
-                        className="w-full pointer-events-none select-none"
-                        style={{ mixBlendMode: "multiply" }}
-                    />
-                    <Footer />
+<Footer />
 
                     {showCongrats && (
                         <CongratsModal onClose={() => setShowCongrats(false)} />
