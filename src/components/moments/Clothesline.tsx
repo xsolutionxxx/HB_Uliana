@@ -178,9 +178,8 @@ export function Clothesline({ myPhotos, herSlots, onRemoveHer }: Props) {
 
             const arcY = (sx: number) => {
                 const t = Math.max(0, Math.min(1, vw > 0 ? sx / vw : 0));
-                return (
-                    (1 - t) * (1 - t) * 18 + 2 * (1 - t) * t * 150 + t * t * 18
-                );
+                // matches SVG rope: M 0,55 Q 500,160 1000,55
+                return (1 - t) * (1 - t) * 55 + 2 * (1 - t) * t * 160 + t * t * 55;
             };
 
             cardRefs.current.forEach((card, i) => {
