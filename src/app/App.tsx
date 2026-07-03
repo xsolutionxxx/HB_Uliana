@@ -42,13 +42,15 @@ function App() {
                         gameWon={gameWon}
                         onCongrats={() => setShowCongrats(true)}
                     />
-                    <MomentsSection
-                        myPhotos={myPhotos}
-                        herSlots={herSlots}
-                        onAddPhotos={addPhotos}
-                        onRemovePhoto={removePhoto}
-                        photosCount={photosCount}
-                    />
+                    <div className="lg:max-w-360 lg:mx-auto lg:px-20">
+                        <MomentsSection
+                            myPhotos={myPhotos}
+                            herSlots={herSlots}
+                            onAddPhotos={addPhotos}
+                            onRemovePhoto={removePhoto}
+                            photosCount={photosCount}
+                        />
+                    </div>
                     <Container>
                         <GameSection
                             photos={photos}
