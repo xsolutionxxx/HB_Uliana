@@ -24,11 +24,13 @@ const MomentsSection = ({
                 description="Я обрав 6 найяскравіших моментів нашого життя. Твоїм завданням буде додати ще 6 наших спільних спогадів."
             />
 
-            <Clothesline
-                myPhotos={myPhotos}
-                herSlots={herSlots}
-                onRemoveHer={onRemovePhoto}
-            />
+            <div className="-mx-4 sm:mx-0 w-[calc(100%+2rem)] sm:w-full">
+                <Clothesline
+                    myPhotos={myPhotos}
+                    herSlots={herSlots}
+                    onRemoveHer={onRemovePhoto}
+                />
+            </div>
 
             <div className="flex flex-col items-center gap-4">
                 {photosCount < 6 && (

@@ -6,9 +6,10 @@ type Props = {
     onRemoveHer: (i: number) => void;
 };
 
-const PAD = 64;
-const SP = 214;
-const W = 168;
+const isMobile = () => typeof window !== "undefined" && window.innerWidth < 640;
+const PAD = 32;
+const SP = isMobile() ? 150 : 214;
+const W = isMobile() ? 118 : 168;
 
 const WORDS = [
     "чарівно",
@@ -223,7 +224,7 @@ export function Clothesline({ myPhotos, herSlots, onRemoveHer }: Props) {
             id="clothesline"
             style={{
                 position: "relative",
-                height: "340px",
+                height: "clamp(240px, 45vw, 340px)",
                 width: "100%",
                 overflow: "hidden",
                 cursor: "grab",
@@ -402,7 +403,7 @@ export function Clothesline({ myPhotos, herSlots, onRemoveHer }: Props) {
                                 style={{
                                     fontFamily: "'Caveat', cursive",
                                     fontWeight: 600,
-                                    fontSize: 22,
+                                    fontSize: "clamp(14px, 4vw, 22px)",
                                     color: "#b06f86",
                                     padding: "7px 6px 3px",
                                     lineHeight: 1,

@@ -20,9 +20,9 @@ export default function BackgroundMusic() {
     const [volume, setVolume] = useState(0.5);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [hovered, setHovered] = useState(false);
-    const [trackIdx] = useState(0);
-
+    const [expanded, setExpanded] = useState(false);
+    const panelRef = useRef<HTMLDivElement>(null);
+    const trackIdx = 0;
     const track = PLAYLIST[trackIdx];
 
     // Start on first user interaction
@@ -47,16 +47,23 @@ export default function BackgroundMusic() {
         }
     }, [volume, muted]);
 
+    // Close on outside click
+    useEffect(() => {
+        if (!expanded) return;
+        const handler = (e: MouseEvent) => {
+            if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+                setExpanded(false);
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        return () => document.removeEventListener("mousedown", handler);
+    }, [expanded]);
+
     const togglePlay = useCallback(() => {
         const a = audioRef.current;
         if (!a) return;
-        if (playing) {
-            a.pause();
-            setPlaying(false);
-        } else {
-            a.play().catch(() => {});
-            setPlaying(true);
-        }
+        if (playing) { a.pause(); setPlaying(false); }
+        else { a.play().catch(() => {}); setPlaying(true); }
     }, [playing]);
 
     const handleTimeUpdate = useCallback(() => {
@@ -73,8 +80,6 @@ export default function BackgroundMusic() {
         setCurrentTime(t);
     }, []);
 
-    const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
-
     return (
         <>
             <audio
@@ -88,16 +93,18 @@ export default function BackgroundMusic() {
             />
 
             <div
-                className="fixed top-4 right-4 z-50 flex items-center justify-end"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
+                ref={panelRef}
+                className="fixed top-4 right-4 z-50 flex items-center gap-2"
             >
-                {/* Розгорнута панель — видно при наведенні */}
+                {/* Панель керування */}
                 <div
-                    className={`flex items-center gap-2 bg-white/85 backdrop-blur-md
-                                rounded-full px-3 py-2 shadow-md border border-primary/20
+                    className={`flex items-center gap-2 bg-white/90 backdrop-blur-md
+                                rounded-2xl px-3 py-2 shadow-lg border border-primary/20
                                 transition-all duration-300 overflow-hidden
-                                ${hovered ? "opacity-100 max-w-xs mr-2" : "opacity-0 max-w-0 mr-0 pointer-events-none"}`}
+                                ${expanded
+                                    ? "opacity-100 max-w-[300px] pointer-events-auto"
+                                    : "opacity-0 max-w-0 px-0 pointer-events-none"
+                                }`}
                 >
                     {/* Play/Pause */}
                     <button
@@ -107,13 +114,13 @@ export default function BackgroundMusic() {
                         {playing ? <Pause size={15} /> : <Play size={15} />}
                     </button>
 
-                    {/* Назва пісні + прогрес */}
+                    {/* Назва + прогрес */}
                     <div className="flex flex-col gap-0.5 min-w-0">
-                        <span className="text-[10px] font-semibold text-primary truncate max-w-[130px]">
+                        <span className="text-[10px] font-semibold text-primary truncate max-w-[120px] sm:max-w-[150px]">
                             {track.name}
                         </span>
-                        <div className="flex items-center gap-1.5">
-                            <span className="text-[9px] text-primary/50 shrink-0 tabular-nums">
+                        <div className="flex items-center gap-1">
+                            <span className="text-[9px] text-primary/50 shrink-0 tabular-nums w-7">
                                 {formatTime(currentTime)}
                             </span>
                             <input
@@ -123,16 +130,16 @@ export default function BackgroundMusic() {
                                 step={0.1}
                                 value={currentTime}
                                 onChange={handleSeek}
-                                className="w-20 accent-primary cursor-pointer"
+                                className="w-20 sm:w-28 accent-primary cursor-pointer"
                                 style={{ height: "3px" }}
                             />
-                            <span className="text-[9px] text-primary/50 shrink-0 tabular-nums">
+                            <span className="text-[9px] text-primary/50 shrink-0 tabular-nums w-7">
                                 {formatTime(duration)}
                             </span>
                         </div>
                     </div>
 
-                    {/* Volume */}
+                    {/* Гучність */}
                     <button
                         onClick={() => setMuted((m) => !m)}
                         className="text-primary/60 hover:text-primary cursor-pointer shrink-0 transition-colors"
@@ -155,16 +162,16 @@ export default function BackgroundMusic() {
                     />
                 </div>
 
-                {/* Іконка-кнопка завжди видна */}
+                {/* Головна кнопка — клік відкриває/закриває */}
                 <button
-                    onClick={togglePlay}
-                    title={playing ? "Пауза" : "Грати"}
-                    className="flex items-center justify-center w-9 h-9 rounded-full
-                               bg-white/80 backdrop-blur-sm shadow-md border border-primary/20
+                    onClick={() => setExpanded((s) => !s)}
+                    title={expanded ? "Сховати плеєр" : "Відкрити плеєр"}
+                    className="flex items-center justify-center w-10 h-10 rounded-full
+                               bg-white/85 backdrop-blur-sm shadow-md border border-primary/20
                                text-primary/70 hover:text-primary hover:bg-white
                                cursor-pointer transition-all active:scale-90 shrink-0"
                 >
-                    {playing ? <Pause size={15} /> : <Music size={15} />}
+                    {playing ? <Pause size={16} /> : <Music size={16} />}
                 </button>
             </div>
         </>
