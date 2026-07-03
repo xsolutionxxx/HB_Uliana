@@ -35,9 +35,9 @@ const MomentsSection = ({
                 <defs>
                     <filter id="baobab-pink" colorInterpolationFilters="sRGB">
                         <feColorMatrix type="matrix" values="
-                            -0.04  0.61  0  0  0.43
-                             0.65  0.62  0  0 -0.27
-                             0.04  1.39  0  0 -0.43
+                             0.18  0.64  0  0  0.17
+                             0.54  0.85  0  0 -0.39
+                             0.10  1.44  0  0 -0.54
                              0     0     0  1  0
                         " />
                     </filter>
