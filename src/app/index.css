@@ -22,11 +22,15 @@
   --animate-speech-pop: speech-pop 0.4s cubic-bezier(.34,1.56,.64,1) both;
 }
 
+html {
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--font-nunito);
   background-color: var(--color-background);
   color: var(--color-text);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .glow-hover:hover {

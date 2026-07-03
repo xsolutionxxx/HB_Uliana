@@ -29,7 +29,7 @@ export function GameBoard({
 
     return (
         <div className="relative">
-            <div className="grid grid-cols-4 sm:grid-cols-6 gap-1.5 sm:gap-2 max-w-175 mx-auto">
+            <div className="grid grid-cols-4 sm:grid-cols-6 gap-1.5 sm:gap-2 max-w-175 mx-auto px-2 sm:px-0">
                 {deck.map((card) => (
                     <GameCard
                         key={card.id}

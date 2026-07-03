@@ -19,7 +19,7 @@ export function GameStats({ moves, matched, timeLeft, onRestart }: Props) {
               : "text-red-500";
 
     return (
-        <div className="flex gap-3 justify-center flex-wrap mt-20 mb-10">
+        <div className="flex gap-3 justify-center flex-wrap mt-20 mb-10 px-4">
             <div className="flex flex-col items-center px-4 py-2 bg-white rounded-2xl shadow-sm min-w-17">
                 <span className="font-bold text-2xl text-primary tabular-nums">
                     {moves}
