@@ -32,6 +32,11 @@ const MomentsSection = ({
                 alt="baobab"
                 className="absolute bottom-0 left-0 -translate-x-1/2 h-[115%] z-1000 pointer-events-none select-none"
             />
+            <img
+                src="/baobab.png"
+                alt="baobab"
+                className="absolute bottom-0 right-0 translate-x-1/2 h-[115%] z-1000 pointer-events-none select-none scale-x-[-1]"
+            />
 
             <Clothesline
                 myPhotos={myPhotos}
