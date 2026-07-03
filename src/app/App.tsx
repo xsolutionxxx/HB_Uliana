@@ -63,10 +63,9 @@ function App() {
                     <img
                         src="/cardio_heart.png"
                         alt=""
-                        className="relative w-full pointer-events-none select-none z-10 -mb-[4vw] -mt-[4vw]"
+                        className="relative w-full pointer-events-none select-none z-10 -mb-[6vw] -mt-[14vw]"
                         style={{
-                            mixBlendMode: "multiply",
-                            filter: "sepia(1) hue-rotate(300deg) saturate(1.4) brightness(1.1)",
+                            filter: "sepia(1) hue-rotate(300deg) saturate(1.4) brightness(1.15)",
                         }}
                     />
                     <Footer />
