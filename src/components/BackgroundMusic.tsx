@@ -165,10 +165,10 @@ export default function BackgroundMusic() {
                         </div>
                     </div>
                 ) : (
-                    /* Згорнута — тільки пластинка вгорі справа */
+                    /* Згорнута — пластинка вгорі зліва */
                     <button
                         onClick={() => setExpanded(true)}
-                        className="fixed top-4 right-4 z-50 cursor-pointer active:scale-90 transition-transform"
+                        className="fixed top-4 left-4 z-50 cursor-pointer active:scale-90 transition-transform"
                     >
                         <VinylDisc spinning={playing} />
                     </button>
