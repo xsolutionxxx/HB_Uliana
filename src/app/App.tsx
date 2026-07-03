@@ -59,6 +59,12 @@ function App() {
                             onAddPhotos={addPhotos}
                             onWin={() => setGameWon(true)}
                         />
+                        <img
+                            src="/hearts-stream.png"
+                            alt=""
+                            className="w-full pointer-events-none select-none"
+                            style={{ mixBlendMode: "multiply" }}
+                        />
                         <Footer />
                     </Container>
 
