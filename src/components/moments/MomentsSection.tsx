@@ -30,7 +30,7 @@ const MomentsSection = ({
             <img
                 src="/baobab.png"
                 alt="baobab"
-                className="absolute bottom-0 -left-4 sm:-left-10 md:-left-20 lg:left-0 -translate-x-1/2 h-[140%] z-1000"
+                className="absolute bottom-0 left-0 -translate-x-1/2 h-[115%] z-1000 pointer-events-none select-none"
             />
 
             <Clothesline

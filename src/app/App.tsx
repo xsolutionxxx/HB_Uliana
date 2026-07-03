@@ -42,14 +42,14 @@ function App() {
                         gameWon={gameWon}
                         onCongrats={() => setShowCongrats(true)}
                     />
+                    <MomentsSection
+                        myPhotos={myPhotos}
+                        herSlots={herSlots}
+                        onAddPhotos={addPhotos}
+                        onRemovePhoto={removePhoto}
+                        photosCount={photosCount}
+                    />
                     <Container>
-                        <MomentsSection
-                            myPhotos={myPhotos}
-                            herSlots={herSlots}
-                            onAddPhotos={addPhotos}
-                            onRemovePhoto={removePhoto}
-                            photosCount={photosCount}
-                        />
                         <GameSection
                             photos={photos}
                             photosReady={photosReady}
