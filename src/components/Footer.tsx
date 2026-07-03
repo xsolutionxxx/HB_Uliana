@@ -30,6 +30,12 @@ const Footer = () => {
                 background: "radial-gradient(ellipse 120% 80% at 50% 100%, #ffd6e8 0%, #ffe8f2 40%, #fff6f8 100%)",
             }}
         >
+            {/* Плавний перехід від фону сторінки зверху */}
+            <div
+                className="pointer-events-none absolute top-0 left-0 right-0 h-40 z-10"
+                style={{ background: "linear-gradient(to bottom, #fff6f8, transparent)" }}
+            />
+
             {/* Декоративні кола на фоні */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full opacity-30"
