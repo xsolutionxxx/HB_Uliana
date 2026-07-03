@@ -30,8 +30,9 @@ const MomentsSection = ({
             <img
                 src="/baobab.png"
                 alt="baobab"
-                className="absolute bottom-0 left-0 -translate-x-1/2 h-full z-1000"
+                className="absolute bottom-0 -left-4 sm:left-0 -translate-x-1/2 h-full z-1000"
             />
+            
             <Clothesline
                 myPhotos={myPhotos}
                 herSlots={herSlots}
