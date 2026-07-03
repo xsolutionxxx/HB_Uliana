@@ -30,17 +30,31 @@ const MomentsSection = ({
                 />
             </div>
 
+            {/* SVG-фільтр: зелень → рожевий, коричневий ствол залишається */}
+            <svg width="0" height="0" style={{ position: "absolute" }}>
+                <defs>
+                    <filter id="baobab-pink" colorInterpolationFilters="sRGB">
+                        <feColorMatrix type="matrix" values="
+                            -0.04  0.61  0  0  0.43
+                             0.65  0.62  0  0 -0.27
+                             0.04  1.39  0  0 -0.43
+                             0     0     0  1  0
+                        " />
+                    </filter>
+                </defs>
+            </svg>
+
             <img
                 src="/baobab.png"
                 alt="baobab"
                 className="absolute bottom-0 left-0 -translate-x-1/2 h-full sm:h-[110%] z-10 pointer-events-none select-none"
-                style={{ filter: "sepia(1) hue-rotate(295deg) saturate(1.8) brightness(1.1)" }}
+                style={{ filter: "url(#baobab-pink)" }}
             />
             <img
                 src="/baobab.png"
                 alt="baobab"
                 className="absolute bottom-0 right-0 translate-x-1/2 h-[96%] sm:h-[105%] z-10 pointer-events-none select-none scale-x-[-1]"
-                style={{ filter: "sepia(1) hue-rotate(295deg) saturate(1.8) brightness(1.1)" }}
+                style={{ filter: "url(#baobab-pink)" }}
             />
 
             <Clothesline
