@@ -46,30 +46,48 @@ const MomentsSection = ({
                 onRemoveHer={onRemovePhoto}
             />
 
-            {/* Поляроїд-блок */}
-            <div className="relative z-20 bg-white shadow-xl rounded-sm px-6 pt-5 pb-8 flex flex-col items-center gap-4"
-                style={{ boxShadow: "0 8px 32px rgba(180,90,130,0.18), 0 2px 8px rgba(0,0,0,0.08)" }}>
-                {/* Поляроїд "верхня смуга" */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-sm bg-gradient-to-r from-pink-200 via-primary/40 to-pink-200" />
+            {/* Поляроїд */}
+            <div
+                className="relative z-20 bg-white flex flex-col w-64 sm:w-72"
+                style={{
+                    boxShadow: "0 12px 40px rgba(180,90,130,0.22), 0 3px 10px rgba(0,0,0,0.1)",
+                    padding: "10px 10px 0 10px",
+                    borderRadius: "2px",
+                    transform: "rotate(-1.5deg)",
+                }}
+            >
+                {/* Фото-зона */}
+                <div
+                    className="w-full flex flex-col items-center justify-center gap-3 py-8"
+                    style={{
+                        background: "linear-gradient(135deg, #ffe0ec 0%, #ffd6e8 40%, #fce4f0 100%)",
+                        minHeight: "180px",
+                    }}
+                >
+                    <span className="text-5xl">
+                        {photosCount < 6 ? "📎" : "🌸"}
+                    </span>
+                    <span className="font-caveat font-bold text-2xl text-primary text-center leading-tight px-4">
+                        {photosCount < 6 ? "Додай свій спогад" : "Всі спогади\nдодано!"}
+                    </span>
 
-                <span className="font-caveat text-2xl text-primary font-bold">
-                    {photosCount < 6 ? "Додай свій спогад 📎" : "Всі спогади додано! 🌸"}
-                </span>
+                    {photosCount < 6 && (
+                        <button
+                            onClick={onAddPhotos}
+                            className="bg-primary text-white font-bold px-6 py-2.5 rounded-full
+                                       shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-transform text-sm mt-1"
+                        >
+                            ＋ Додати спогад
+                        </button>
+                    )}
+                </div>
 
-                {photosCount < 6 && (
-                    <button
-                        onClick={onAddPhotos}
-                        className="bg-primary text-white font-bold px-8 py-3 rounded-full
-                                   shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-transform"
-                    >
-                        ＋ Додати спогад
-                    </button>
-                )}
-
-                {/* Лічильник у стилі підпису поляроїда */}
-                <span className="font-caveat text-lg text-primary/70">
-                    {photosCount} / 6
-                </span>
+                {/* Білий підпис поляроїда */}
+                <div className="flex items-center justify-center py-4">
+                    <span className="font-caveat text-xl text-primary/60 tracking-wide">
+                        {photosCount} / 6
+                    </span>
+                </div>
             </div>
         </section>
     );
