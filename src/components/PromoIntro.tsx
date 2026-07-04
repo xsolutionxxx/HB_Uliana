@@ -191,8 +191,7 @@ const PromoIntro = ({ onElephantLand }: Props) => {
                   ? "translateX(20%)"
                   : "translateX(20%) scale(0.92)",
               opacity: phase === "dialog" ? 1 : 0,
-              acity: phase === "dialog" ? 1 : 0,
-              transition: "opacity 0.35s ease, transform 0.35s ease",
+              // Рядок transition повністю видалено, щоб вікно з'являлось миттєво
             }}
           >
             <img
