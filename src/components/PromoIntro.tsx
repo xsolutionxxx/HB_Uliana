@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { ElephantMascot } from "./ElephantMascot";
 import somersaultImg from "../assets/somersault-elephant.png";
 
@@ -101,27 +101,15 @@ const PromoIntro = ({ onElephantLand }: Props) => {
   return (
     <div
       className="relative w-full promo-intro-wrap"
-      style={
-        {
-          "--pad-mobile":
-            phase === "dialog" || phase === "flying"
-              ? `calc(${BUBBLE_SIZE} + 28px)`
-              : "24px",
-          "--pad-desktop":
-            phase === "dialog" || phase === "flying"
-              ? `calc(${BUBBLE_SIZE} - 53px)`
-              : "24px",
-          paddingTop: "var(--pad-mobile)",
-          paddingBottom: "16px",
-          transition: "padding-top 0.3s ease",
-        } as CSSProperties
-      }
+      style={{
+        // Секція розгортається лише поки видно діалог (фіксовано ~300px
+        // разом з рядком і нижнім відступом), і одразу згортається назад,
+        // щойно другий клік переводить фазу в "flying"
+        paddingTop: phase === "dialog" ? "140px" : "24px",
+        paddingBottom: "16px",
+        transition: "padding-top 0.4s ease",
+      }}
     >
-      <style>{`
-        @media (min-width: 640px) {
-          .promo-intro-wrap { padding-top: var(--pad-desktop) !important; }
-        }
-      `}</style>
       <div className="relative z-10 flex items-center max-w-5xl mx-auto px-4 sm:px-10">
         <div
           ref={elephantRef}
@@ -157,7 +145,7 @@ const PromoIntro = ({ onElephantLand }: Props) => {
           />
 
           <ElephantMascot
-            emotion="default"
+            emotion={phase === "idle" ? "default" : "happy"}
             width={110}
             className="sm:w-[140px] relative z-10"
           />
@@ -184,12 +172,9 @@ const PromoIntro = ({ onElephantLand }: Props) => {
           <div
             className="absolute left-1/2 z-30"
             style={{
+              left: "20%",
               bottom: "calc(20%)", // Змінено з 14px на 2px, щоб опустити вікно ближче до слоника
               width: BUBBLE_SIZE,
-              transform:
-                phase === "dialog"
-                  ? "translateX(20%)"
-                  : "translateX(20%) scale(0.92)",
               opacity: phase === "dialog" ? 1 : 0,
               // Рядок transition повністю видалено, щоб вікно з'являлось миттєво
             }}

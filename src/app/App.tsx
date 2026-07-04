@@ -9,6 +9,7 @@ import CountdownOverlay from "../components/CountdownOverlay";
 import CongratsModal from "../components/CongratsModal";
 import { usePhotos } from "../hooks/usePhotos";
 import PromoIntro from "../components/PromoIntro";
+import BrokenIntro from "../components/BrokenIntro";
 
 function App() {
   const {
@@ -21,10 +22,10 @@ function App() {
     photosCount,
   } = usePhotos();
 
-  const [locked, setLocked] = useState(() => {
-    const BIRTHDAY = new Date("2026-07-04T03:00:00+03:00");
-    return Date.now() < BIRTHDAY.getTime();
-  });
+  // Сторінка з таймером показується завжди при завантаженні — навіть якщо
+  // дата дня народження вже минула, CountdownOverlay сам покаже привітання
+  // з кнопкою переходу замість чисел зворотного відліку.
+  const [locked, setLocked] = useState(true);
 
   const [gameWon, setGameWon] = useState(false);
   const [showCongrats, setShowCongrats] = useState(false);
@@ -52,6 +53,9 @@ function App() {
               elephantOnBaobab={elephantOnBaobab}
             />
           </div>
+          <Container>
+            <BrokenIntro />
+          </Container>
           <Container>
             <GameSection
               photos={photos}

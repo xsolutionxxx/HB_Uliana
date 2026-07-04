@@ -3,7 +3,7 @@ import { Volume2 } from "lucide-react";
 import Petals from "./ui/Petals";
 import useHeroDecor from "../hooks/useHeroDecor";
 
-const BIRTHDAY = new Date("2026-07-04T10:30:00+03:00");
+const BIRTHDAY = new Date("2026-07-04T09:41:00+03:00");
 
 type TimeLeft = {
   days: number;
@@ -33,9 +33,10 @@ type Props = {
 
 export default function CountdownOverlay({ onUnlock }: Props) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calcTimeLeft);
-  const [celebrating, setCelebrating] = useState(false);
+  const [celebrating, setCelebrating] = useState(() => calcTimeLeft() === null);
   const { layers, orbs } = useHeroDecor();
   const playedMinionsRef = useRef(false);
+  const minionsAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -49,7 +50,16 @@ export default function CountdownOverlay({ onUnlock }: Props) {
   }, [celebrating]);
 
   const playMinions = useCallback(() => {
-    new Audio("/HB-minions.mp3").play().catch(() => {});
+    // якщо пісня вже грає — ігноруємо повторний клік, щоб не накладати
+    // одне відтворення на інше
+    if (minionsAudioRef.current && !minionsAudioRef.current.paused) return;
+
+    if (!minionsAudioRef.current) {
+      minionsAudioRef.current = new Audio("/hb-minions.mp3");
+    }
+    const audio = minionsAudioRef.current;
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
   }, []);
 
   // Один раз програти привітання, щойно таймер дораховує до нуля
@@ -142,7 +152,7 @@ export default function CountdownOverlay({ onUnlock }: Props) {
               <button
                 onClick={handleUnlock}
                 className="bg-primary text-white font-bold text-lg sm:text-xl
-                                           px-10 py-4 rounded-full shadow-xl
+                                           px-10 py-4 rounded-full shadow-xl cursor-pointer
                                            hover:scale-105 active:scale-95 transition-transform animate-pulse"
               >
                 Відкрити подарунок 🎁
@@ -208,14 +218,6 @@ export default function CountdownOverlay({ onUnlock }: Props) {
           Готуй спогади — скоро ти все побачиш ✨
         </p>
       )}
-
-      <button
-        onClick={handleUnlock}
-        className="absolute top-4 right-4 z-20 bg-black/70 text-white text-xs
-                           font-bold px-3 py-1.5 rounded-full cursor-pointer hover:bg-black/85"
-      >
-        DEV: пропустити таймер
-      </button>
     </div>
   );
 }
