@@ -3,7 +3,7 @@ import { Volume2 } from "lucide-react";
 import Petals from "./ui/Petals";
 import useHeroDecor from "../hooks/useHeroDecor";
 
-const BIRTHDAY = new Date("2026-07-04T09:41:00+03:00");
+const BIRTHDAY = new Date("2026-07-04T11:15:00+03:00");
 
 type TimeLeft = {
   days: number;
