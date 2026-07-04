@@ -11,74 +11,74 @@ import { usePhotos } from "../hooks/usePhotos";
 import PromoIntro from "../components/PromoIntro";
 
 function App() {
-    const {
-        myPhotos,
-        herSlots,
-        photos,
-        addPhotos,
-        removePhoto,
-        photosReady,
-        photosCount,
-    } = usePhotos();
+  const {
+    myPhotos,
+    herSlots,
+    photos,
+    addPhotos,
+    removePhoto,
+    photosReady,
+    photosCount,
+  } = usePhotos();
 
-    const [locked, setLocked] = useState(() => {
-        const BIRTHDAY = new Date("2026-07-04T03:00:00+03:00");
-        return Date.now() < BIRTHDAY.getTime();
-    });
+  const [locked, setLocked] = useState(() => {
+    const BIRTHDAY = new Date("2026-07-04T03:00:00+03:00");
+    return Date.now() < BIRTHDAY.getTime();
+  });
 
-    const [gameWon, setGameWon] = useState(false);
-    const [showCongrats, setShowCongrats] = useState(false);
-    const [elephantOnBaobab, setElephantOnBaobab] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
+  const [showCongrats, setShowCongrats] = useState(false);
+  const [elephantOnBaobab, setElephantOnBaobab] = useState(false);
 
-    return (
+  return (
+    <>
+      <BackgroundMusic active={!locked} />
+
+      {locked && <CountdownOverlay onUnlock={() => setLocked(false)} />}
+
+      {!locked && (
         <>
-            <BackgroundMusic />
+          <Header gameWon={gameWon} onCongrats={() => setShowCongrats(true)} />
+          <Container>
+            <PromoIntro onElephantLand={() => setElephantOnBaobab(true)} />
+          </Container>
+          <div className="lg:max-w-360 lg:mx-auto lg:px-20">
+            <MomentsSection
+              myPhotos={myPhotos}
+              herSlots={herSlots}
+              onAddPhotos={addPhotos}
+              onRemovePhoto={removePhoto}
+              photosCount={photosCount}
+              elephantOnBaobab={elephantOnBaobab}
+            />
+          </div>
+          <Container>
+            <GameSection
+              photos={photos}
+              photosReady={photosReady}
+              photosCount={photosCount}
+              onAddPhotos={addPhotos}
+              onWin={() => setGameWon(true)}
+            />
+          </Container>
+          <img
+            src="/cardio_heart.png"
+            alt=""
+            className="relative w-full pointer-events-none select-none z-10 -mb-[6vw] -mt-[14vw] opacity-95"
+            style={{
+              filter:
+                "sepia(1) hue-rotate(310deg) saturate(2.8) brightness(1.05) contrast(1.1)",
+            }}
+          />
+          <Footer />
 
-            {locked && (
-                <CountdownOverlay onUnlock={() => setLocked(false)} />
-            )}
-
-            {!locked && (
-                <>
-                    <Header
-                        gameWon={gameWon}
-                        onCongrats={() => setShowCongrats(true)}
-                    />
-                    <PromoIntro onElephantLand={() => setElephantOnBaobab(true)} />
-                    <div className="lg:max-w-360 lg:mx-auto lg:px-20">
-                        <MomentsSection
-                            myPhotos={myPhotos}
-                            herSlots={herSlots}
-                            onAddPhotos={addPhotos}
-                            onRemovePhoto={removePhoto}
-                            photosCount={photosCount}
-                            elephantOnBaobab={elephantOnBaobab}
-                        />
-                    </div>
-                    <Container>
-                        <GameSection
-                            photos={photos}
-                            photosReady={photosReady}
-                            photosCount={photosCount}
-                            onAddPhotos={addPhotos}
-                            onWin={() => setGameWon(true)}
-                        />
-                    </Container>
-                    <img
-                        src="/cardio_heart.png"
-                        alt=""
-                        className="relative w-full pointer-events-none select-none z-10 -mb-[6vw] -mt-[14vw] opacity-95"
-                        style={{ filter: "sepia(1) hue-rotate(310deg) saturate(2.8) brightness(1.05) contrast(1.1)" }}
-                    />
-                    <Footer />
-
-                    {showCongrats && (
-                        <CongratsModal onClose={() => setShowCongrats(false)} />
-                    )}
-                </>
-            )}
+          {showCongrats && (
+            <CongratsModal onClose={() => setShowCongrats(false)} />
+          )}
         </>
-    );
+      )}
+    </>
+  );
 }
 
 export default App;

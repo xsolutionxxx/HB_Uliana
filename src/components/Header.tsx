@@ -13,7 +13,13 @@ const Header = ({ gameWon, onCongrats }: Props) => {
     const { layers, orbs } = useHeroDecor();
 
     return (
-        <section className="relative min-h-svh flex flex-col items-center justify-center background:radial-gradient(120%_90%_at_50%_0%,#ffe6ee,#fff2f6_42%,#fff6f8) overflow-hidden">
+        <section
+            className="relative min-h-svh flex flex-col items-center justify-center overflow-hidden"
+            style={{
+                background:
+                    "radial-gradient(120% 90% at 50% 0%, #ffe6ee, #fff2f6 42%, #fff6f8)",
+            }}
+        >
             <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                 <Petals />
 

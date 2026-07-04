@@ -44,7 +44,11 @@ function formatTime(s: number) {
     return `${m}:${sec.toString().padStart(2, "0")}`;
 }
 
-export default function BackgroundMusic() {
+type Props = {
+    active?: boolean;
+};
+
+export default function BackgroundMusic({ active = true }: Props) {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [playing, setPlaying] = useState(false);
     const [started, setStarted] = useState(false);
@@ -58,10 +62,12 @@ export default function BackgroundMusic() {
     const trackIdx = 0;
     const track = PLAYLIST[trackIdx];
 
-    // Start on first user interaction
+    // Стартує на першій взаємодії користувача, але лише коли секція розлочена —
+    // інакше музика вмикається ще на екрані таймера.
     useEffect(() => {
+        if (!active || started) return;
+
         const start = () => {
-            if (started) return;
             audioRef.current?.play().then(() => setPlaying(true)).catch(() => {});
             setStarted(true);
         };
@@ -71,7 +77,7 @@ export default function BackgroundMusic() {
             window.removeEventListener("pointerdown", start);
             window.removeEventListener("keydown", start);
         };
-    }, [started]);
+    }, [active, started]);
 
     useEffect(() => {
         if (audioRef.current) {

@@ -1,10 +1,17 @@
+import gen1 from "../assets/general/Gen_1.jpg";
+import gen2 from "../assets/general/Gen_2.jpg";
+import gen3 from "../assets/general/Gen_3.jpg";
+import gen4 from "../assets/general/Gen_4.jpg";
+import gen5 from "../assets/general/Gen_5.jpg";
+import gen6 from "../assets/general/Gen_6.jpg";
+
 const POLAROIDS = [
-    { src: "/hero-photo-1.jpg", rot: -8,  delay: "0s",    anim: "sway-a" },
-    { src: "/hero-photo-2.jpg", rot:  5,  delay: "0.4s",  anim: "sway-b" },
-    { src: "/hero-photo-3.jpg", rot: -4,  delay: "0.8s",  anim: "sway-a" },
-    { src: "/hero-photo-4.jpg", rot:  9,  delay: "0.2s",  anim: "sway-b" },
-    { src: "/hero-photo-5.jpg", rot: -6,  delay: "0.6s",  anim: "sway-a" },
-    { src: "/hero-photo-6.jpg", rot:  3,  delay: "1.0s",  anim: "sway-b" },
+    { src: gen1, rot: -8,  delay: "0s",    anim: "sway-a" },
+    { src: gen2, rot:  5,  delay: "0.4s",  anim: "sway-b" },
+    { src: gen3, rot: -4,  delay: "0.8s",  anim: "sway-a" },
+    { src: gen4, rot:  9,  delay: "0.2s",  anim: "sway-b" },
+    { src: gen5, rot: -6,  delay: "0.6s",  anim: "sway-a" },
+    { src: gen6, rot:  3,  delay: "1.0s",  anim: "sway-b" },
 ];
 
 // mobile(≤sm): 2 | sm→md: 4 | md→lg: 5 | lg+: 6
@@ -31,14 +38,14 @@ const Hero = () => (
         `}</style>
 
         {/* Заголовки */}
-        <div className="flex flex-col items-center gap-2 sm:gap-4 mb-8 sm:mb-14">
+        <div className="flex flex-col items-center gap-2 sm:gap-4 mb-8 sm:mb-14 [@media(max-height:1000px)_and_(min-width:900px)]:mb-6">
             <h2 className="self-end font-bold text-[16px] sm:text-[24px] md:text-[34px] text-primary tracking-[0.2em] sm:tracking-[0.25em] uppercase">
                 З Днем Народження
             </h2>
-            <h1 className="font-caveat font-black text-[clamp(64px,22vw,210px)] text-primary leading-[0.6]">
+            <h1 className="font-caveat font-black text-[clamp(64px,22vw,210px)] [@media(max-height:1000px)_and_(min-width:900px)]:text-[160px] [@media(max-height:760px)_and_(min-width:900px)]:text-[120px] text-primary leading-[0.6]">
                 Юліаночка
             </h1>
-            <p className="mt-3 sm:mt-6 font-caveat font-medium text-[clamp(20px,5vw,46px)] text-center">
+            <p className="mt-3 sm:mt-6 font-caveat font-medium text-[clamp(20px,5vw,46px)] [@media(max-height:1000px)_and_(min-width:900px)]:text-[32px] [@media(max-height:760px)_and_(min-width:900px)]:text-[26px] text-center">
                 відколи зустрів тебе — кожен рік найкращий
             </p>
         </div>
@@ -48,9 +55,8 @@ const Hero = () => (
             {POLAROIDS.map((p, i) => (
                 <div
                     key={i}
-                    className={`${SHOW_CLASS[i]} shrink-0`}
+                    className={`${SHOW_CLASS[i]} shrink-0 w-[clamp(110px,17vw,210px)] [@media(max-height:1000px)_and_(min-width:900px)]:w-[150px] [@media(max-height:760px)_and_(min-width:900px)]:w-[115px]`}
                     style={{
-                        width: "clamp(110px, 17vw, 210px)",
                         background: "#fff",
                         padding: "8px 8px 30px",
                         borderRadius: 2,
